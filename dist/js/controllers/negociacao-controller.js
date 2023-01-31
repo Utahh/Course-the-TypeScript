@@ -1,11 +1,13 @@
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
+import { MensagemView } from "../views/mensagem-view.js";
 import { NegociacaoView } from "../views/negociacoes-view.js";
 export class NegociacaoController {
     //Para que possa executar o querySelector de um id no index deve passar os ids com #
     constructor() {
         this.negociacoes = new Negociacoes();
         this.negociacoesView = new NegociacaoView('#negociacoesView');
+        this.mensagemView = new MensagemView('#mensagemView');
         this.inputData = document.querySelector('#data');
         this.inputQuantidade = document.querySelector('#quantidade');
         this.inputValor = document.querySelector('#valor');
@@ -17,6 +19,7 @@ export class NegociacaoController {
         this.negociacoes.adiciona(negociacao);
         this.negociacoes.lista();
         this.negociacoesView.update(this.negociacoes);
+        this.mensagemView.update('Negociação adicionada com sucesso!');
         this.limparFormulario();
     }
     criaNegociacao() {
